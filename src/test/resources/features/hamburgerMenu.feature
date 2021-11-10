@@ -17,7 +17,7 @@ Feature: To have a burger menu with different options to chose from
     And I click on the log out link
     Then I am logged out and redirected to the log in page
 
-    Scenario: As a user, I want to clear the cart
-      When I click on the burger menu
-      And I click on Reset App State link
-      Then All items in the cart are removed
+  Scenario: As a user, I want to clear the cart
+    When I click on the burger menu
+    And I click on Reset App State link
+    Then All items in the cart are removed

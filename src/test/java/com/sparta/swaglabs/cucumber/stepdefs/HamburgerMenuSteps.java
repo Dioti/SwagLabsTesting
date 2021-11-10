@@ -52,9 +52,4 @@ public class HamburgerMenuSteps {
     public void allItemsInTheCartAreRemoved() {
     }
 
-    @After
-    public void finished() {
-        webDriver.quit();
-    }
-
 }

@@ -46,8 +46,12 @@ public class ProductsPage extends Page {
     }
 
     public void goToAllItemsFromHamburgerMenu() {
-        if (isAttributePresent()) {
-            driver.findElement(allItemsLinkInHamburgerMenu).click();
+        boolean bool = false;
+        while(!bool) {
+            bool = isAttributePresent();
+            if(bool) {
+                driver.findElement(allItemsLinkInHamburgerMenu).click();
+            }
         }
     }
 

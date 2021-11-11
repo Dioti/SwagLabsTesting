@@ -40,7 +40,9 @@ public class FooterSteps {
         for (String s : productsPage.getURls()) {
             urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
         }
-        Assertions.assertEquals(true, urls.contains("https://twitter.com/saucelabs"));
+
+
+        Assertions.assertEquals(true, urls.get(1).contains("https://twitter.com/"));
     }
 
     @When("I click on the Facebook icon")
@@ -55,7 +57,8 @@ public class FooterSteps {
         for (String s : productsPage.getURls()) {
             urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
         }
-        Assertions.assertEquals(true, urls.contains("https://www.facebook.com/saucelabs"));
+
+        Assertions.assertEquals(true, urls.get(1).contains("https://www.facebook.com/"));
     }
 
     @When("I click on the Linkedin icon")

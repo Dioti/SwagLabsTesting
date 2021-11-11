@@ -16,14 +16,18 @@ public class ProductsPage extends Page {
     //Hamburger Menu
     private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
 
-    //Cart Link
+    //Cart
     private By cartLink = new By.ByCssSelector(".shopping_cart_link");
+    private By cartBadge = new By.ByClassName("shopping_cart_badge");
 
     //Hamburger Menu Links
     private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
     private By aboutInHamburgerMenu = new By.ByCssSelector("#about_sidebar_link"); // - > https://saucelabs.com/
     private By resetAppStateInHamburgerMenu = new By.ByCssSelector("#reset_sidebar_link");
     private By logOutInHamburgerMenu = new By.ByCssSelector("#logout_sidebar_link");
+
+    //Products
+    private By addTShirtToCart = new By.ByCssSelector("*[data-test=\"add-to-cart-sauce-labs-bolt-t-shirt\"]");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -74,9 +78,21 @@ public class ProductsPage extends Page {
 
     public void goToResetAppStateFromHamburgerMenu() {
         WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(logOutInHamburgerMenu));
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(resetAppStateInHamburgerMenu));
         element.click();
     }
 
+    public void addTShirt() {
+        driver.findElement(addTShirtToCart).click();
+    }
 
+    public boolean resetProducts() {
+        try
+        {
+            Thread.sleep(2_000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return driver.findElement(cartBadge).isEnabled();
+    }
 }

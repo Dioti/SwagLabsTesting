@@ -8,6 +8,7 @@ public class ProductsPage extends Page {
     private By twitterLink = new By.ByCssSelector(".social_twitter");
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
+    private By cartLink = new By.ByCssSelector(".shopping_cart_link");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -27,6 +28,10 @@ public class ProductsPage extends Page {
     public void goTolinkedIn() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(linkedInLink).click();
+    }
+    public void goToCart(){
+        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL,Keys.END);
+        driver.findElement(cartLink).click();
     }
 
 }

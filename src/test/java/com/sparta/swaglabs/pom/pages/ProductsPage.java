@@ -10,12 +10,13 @@ public class ProductsPage extends Page {
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
 
     public ProductsPage(WebDriver webDriver) {
-        this.driver = webDriver;
+        super(webDriver);
     }
 
-    public void goToTwitter() {
+    public Page goToTwitter() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(twitterLink).click();
+        return new Page(driver);
     }
 
     public void goToFacebook() {

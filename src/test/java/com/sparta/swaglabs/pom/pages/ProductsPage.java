@@ -9,6 +9,9 @@ public class ProductsPage extends Page {
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
 
+    private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
+    private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
+
     public ProductsPage(WebDriver webDriver) {
         this.driver = webDriver;
     }
@@ -26,6 +29,14 @@ public class ProductsPage extends Page {
     public void goTolinkedIn() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(linkedInLink).click();
+    }
+
+    public void goToHamburgerMenu() {
+        driver.findElement(hamburgerMenu).click();
+    }
+
+    public void goToAllItemsFromHamburgerMenu() {
+        driver.findElement(allItemsLinkInHamburgerMenu).click();
     }
 
 }

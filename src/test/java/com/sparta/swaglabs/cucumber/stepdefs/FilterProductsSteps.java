@@ -8,12 +8,6 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 public class FilterProductsSteps {
-    private WebDriver webDriver;
-
-    @Before
-    public void setUp() {
-        DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
-    }
 
     @When("I click on the filter dropdown")
     public void iClickOnTheFilterDropdown() {

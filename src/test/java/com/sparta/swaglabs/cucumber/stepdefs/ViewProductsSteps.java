@@ -8,12 +8,6 @@ import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
 
 public class ViewProductsSteps {
-    private WebDriver webDriver;
-
-    @Before
-    public void setUp() {
-        DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
-    }
 
     @Then("I should see Product Title")
     public void iShouldSeeProductTitle() {

@@ -4,6 +4,7 @@ import com.sparta.swaglabs.pom.pages.LoginPage;
 import com.sparta.swaglabs.pom.pages.ProductsPage;
 import com.sparta.swaglabs.pom.util.DriverFactory;
 import com.sparta.swaglabs.pom.util.DriverManager;
+import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -15,12 +16,12 @@ import java.util.List;
 
 public class FooterSteps {
     private WebDriver webDriver;
-    ProductsPage productsPage;
+    private ProductsPage productsPage;
 
     @Before
     public void setUp() {
-        webDriver = DriverFactory.getDriver("chrome");
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
+        webDriver = DriverFactory.getDriver("chrome");
         productsPage = new ProductsPage(webDriver);
     }
 
@@ -33,7 +34,6 @@ public class FooterSteps {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        productsPage.goToTwitter();
     }
 
     @Then("I should be redirected to the company's Twitter profile")
@@ -59,5 +59,10 @@ public class FooterSteps {
 
     @Then("I should be redirected to the company's Linkedin profile")
     public void iShouldBeRedirectedToTheCompanySLinkedinProfile() {
+    }
+
+    @After
+    public void finish() {
+        webDriver.quit();
     }
 }

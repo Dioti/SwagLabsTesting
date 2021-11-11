@@ -41,6 +41,7 @@ public class ProductsPageTests {
         List<String> urls = new ArrayList<>();
         for (String s : productsPage.getURls()) {
             urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
+            System.out.println(s);
         }
 
         Assertions.assertEquals(true, urls.contains("https://twitter.com/saucelabs"));

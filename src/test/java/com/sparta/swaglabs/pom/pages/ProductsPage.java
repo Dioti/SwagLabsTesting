@@ -24,7 +24,7 @@ public class ProductsPage extends Page {
         driver.findElement(facebookLink).click();
     }
 
-    public void linkedIn() {
+    public void goTolinkedIn() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(linkedInLink).click();
     }

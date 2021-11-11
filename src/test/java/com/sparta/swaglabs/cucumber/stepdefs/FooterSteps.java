@@ -41,7 +41,6 @@ public class FooterSteps {
             urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
         }
 
-
         Assertions.assertEquals(true, urls.get(1).contains("https://twitter.com/"));
     }
 

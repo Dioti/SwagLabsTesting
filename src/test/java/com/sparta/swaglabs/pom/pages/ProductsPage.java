@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 public class ProductsPage extends Page {
     //Footer links
     private By twitterLink = new By.ByCssSelector(".social_twitter");
@@ -18,7 +20,7 @@ public class ProductsPage extends Page {
 
     //Cart
     private By cartLink = new By.ByCssSelector(".shopping_cart_link");
-    private By cartBadge = new By.ByClassName("shopping_cart_badge");
+    private By cartBadge = new By.ByCssSelector(".shopping_cart_badge");
 
     //Hamburger Menu Links
     private By aboutInHamburgerMenu = new By.ByCssSelector("#about_sidebar_link");
@@ -90,13 +92,7 @@ public class ProductsPage extends Page {
     }
 
     public boolean resetProducts() {
-        try
-        {
-            Thread.sleep(2_000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        return driver.findElement(cartBadge).isEnabled();
+        List<WebElement> webElementList = driver.findElements(By.className("shopping_cart_badge"));
+        return webElementList.size() == 0;
     }
-
 }

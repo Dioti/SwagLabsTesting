@@ -18,14 +18,14 @@ public class ViewCartSteps {
     //private CartPage cartPage;
     private LoginPage loginPage;
 
-    @Before
+    /*@Before
     public void setUp() {
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
         webDriver=new ChromeDriver();
         loginPage= new LoginPage(webDriver);
         loginPage.login("standard_user","secret_sauce");
         productsPage=loginPage.getRedirect();
-    }
+    }*/
 
     @When("I click on the cart icon")
     public void iClickOnTheCartIcon() {

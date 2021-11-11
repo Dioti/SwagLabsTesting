@@ -10,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 public class RemoveFromCartStpes {
     private WebDriver webDriver;
 
-    @Before
+    /*@Before
     public void setUp() {
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
     }
@@ -25,5 +25,5 @@ public class RemoveFromCartStpes {
 
     @Given("I am on the cart inventory page")
     public void iAmOnTheCartInventoryPage() {
-    }
+    }*/
 }

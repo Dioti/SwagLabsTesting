@@ -30,4 +30,10 @@ public class LoginPage extends Page {
         return new ProductsPage(driver);
     }
 
+    public void login(String user, String pass) {
+        fillWithUsername(user);
+        fillWithPassword(pass);
+        submitLogin();
+    }
+
 }

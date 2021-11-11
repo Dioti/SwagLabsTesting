@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class ViewCartSteps {
-    private WebDriver webDriver;
+    /*private WebDriver webDriver;
     private ProductsPage productsPage;
     private CartPage cartPage;
     @Before
@@ -31,5 +31,5 @@ public class ViewCartSteps {
     public void iWantToSeeTheCorrectProductsInMyShoppingCart() {
         String actualUrl=webDriver.getCurrentUrl();
         Assertions.assertEquals("https://www.saucedemo.com/cart.html",actualUrl);
-    }
+    }*/
 }

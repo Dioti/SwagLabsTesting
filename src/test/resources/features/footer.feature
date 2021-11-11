@@ -1,6 +1,7 @@
 Feature: To have social media links
 
   Background: I am on the Swaglabs website
+    Given The user is logged in
 
   Scenario: As a user, I want to go to the company's Twitter page
     When I click on the Twitter icon

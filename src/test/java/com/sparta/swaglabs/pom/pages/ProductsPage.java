@@ -10,6 +10,9 @@ public class ProductsPage extends Page {
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
     private By cartLink = new By.ByCssSelector(".shopping_cart_link");
 
+    private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
+    private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
+
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
     }
@@ -32,6 +35,14 @@ public class ProductsPage extends Page {
     public void goToCart(){
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL,Keys.END);
         driver.findElement(cartLink).click();
+    }
+
+    public void goToHamburgerMenu() {
+        driver.findElement(hamburgerMenu).click();
+    }
+
+    public void goToAllItemsFromHamburgerMenu() {
+        driver.findElement(allItemsLinkInHamburgerMenu).click();
     }
 
 }

@@ -30,7 +30,7 @@ public class StepDefManager {
     }
 
     public String getBaseURL() {
-        return "https://www.saucedemo.com/";
+        return "https://www.saucedemo.com";
     }
 
     @Before
@@ -42,7 +42,7 @@ public class StepDefManager {
         LoginPage loginPage = new LoginPage(webDriver);
         loginPage.fillWithUsername("standard_user");
         loginPage.fillWithPassword("secret_sauce");
-        loginPage.submitLogin();
+        loginPage.submit();
         ProductsPage productsPage = loginPage.getRedirect();
     }
 

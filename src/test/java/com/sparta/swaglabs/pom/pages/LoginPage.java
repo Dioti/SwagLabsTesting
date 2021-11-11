@@ -2,6 +2,9 @@ package com.sparta.swaglabs.pom.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 public class LoginPage extends Page {
 
@@ -22,8 +25,17 @@ public class LoginPage extends Page {
         driver.findElement(By.id("password")).sendKeys(pass);
     }
 
-    public void submitLogin() {
+    public void submit() {
         driver.findElement(By.id("login-button")).click();
+    }
+
+    public String getError() {
+        List<WebElement> errorContainer = driver.findElements(By.className("error-message-container"));
+        if (errorContainer.size() != 0) { // if there's an error
+            return driver.findElement(By.className("error-message-container")).getText(); // return error message
+        } else {
+            return null;
+        }
     }
 
     public ProductsPage getRedirect() {
@@ -33,7 +45,7 @@ public class LoginPage extends Page {
     public void login(String user, String pass) {
         fillWithUsername(user);
         fillWithPassword(pass);
-        submitLogin();
+        submit();
     }
 
 }

@@ -32,6 +32,11 @@ public class ProductsPage extends Page {
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
+        goToProductsPage();
+    }
+
+    private void goToProductsPage() {
+        driver.get("https://www.saucedemo.com/inventory.html");
     }
 
     public void goToTwitter() {
@@ -99,4 +104,7 @@ public class ProductsPage extends Page {
         return driver.findElement(cartBadge).isEnabled();
     }
 
+    public void getAllProducts() {
+
+    }
 }

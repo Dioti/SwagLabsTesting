@@ -1,5 +1,6 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
+import com.sparta.swaglabs.pom.model.Product;
 import com.sparta.swaglabs.pom.pages.ProductsPage;
 import com.sparta.swaglabs.pom.util.DriverManager;
 import io.cucumber.java.Before;
@@ -7,6 +8,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class ViewProductsSteps {
 
@@ -24,6 +29,6 @@ public class ViewProductsSteps {
 
     @Then("I see a list of products on the Products page")
     public void iSeeAListOfProductsOnTheProductsPage() {
-        productsPage.getAllProducts();
+        assertEquals(6, productsPage.getProducts().size());
     }
 }

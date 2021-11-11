@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage extends Page {
-    //Footer Links
     private By twitterLink = new By.ByCssSelector(".social_twitter");
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
@@ -21,13 +20,14 @@ public class ProductsPage extends Page {
     private By cartBadge = new By.ByClassName("shopping_cart_badge");
 
     //Hamburger Menu Links
-    private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
-    private By aboutInHamburgerMenu = new By.ByCssSelector("#about_sidebar_link"); // - > https://saucelabs.com/
+    private By aboutInHamburgerMenu = new By.ByCssSelector("#about_sidebar_link");
     private By resetAppStateInHamburgerMenu = new By.ByCssSelector("#reset_sidebar_link");
     private By logOutInHamburgerMenu = new By.ByCssSelector("#logout_sidebar_link");
+    private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
 
     //Products
     private By addTShirtToCart = new By.ByCssSelector("*[data-test=\"add-to-cart-sauce-labs-bolt-t-shirt\"]");
+    private By addBagToCartLink = new By.ById("add-to-cart-sauce-labs-backpacks");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -50,18 +50,20 @@ public class ProductsPage extends Page {
         driver.findElement(linkedInLink).click();
     }
 
-    public void goToCart() {
+    public CartPage goToCart(){
         driver.findElement(cartLink).click();
+        return new CartPage(driver);
     }
 
+    public void addBagToCart(){
+        driver.findElement(addBagToCartLink).click();
+    }
     public void goToHamburgerMenu() {
         driver.findElement(hamburgerMenu).click();
     }
 
     public void goToAllItemsFromHamburgerMenu() {
-        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
-        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(allItemsLinkInHamburgerMenu));
-        element.click();
+        driver.findElement(allItemsLinkInHamburgerMenu).click();
     }
 
     public void goToAboutFromHamburgerMenu() {
@@ -95,4 +97,5 @@ public class ProductsPage extends Page {
         }
         return driver.findElement(cartBadge).isEnabled();
     }
+
 }

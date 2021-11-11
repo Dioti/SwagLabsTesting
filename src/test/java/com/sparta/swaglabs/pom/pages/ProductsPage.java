@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage extends Page {
+    //Footer links
     private By twitterLink = new By.ByCssSelector(".social_twitter");
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");

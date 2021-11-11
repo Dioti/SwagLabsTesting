@@ -92,7 +92,7 @@ public class ProductsPage extends Page {
     }
 
     public boolean resetProducts() {
-        List<WebElement> webElementList = driver.findElements(By.className("shopping_cart_badge"));
+        List<WebElement> webElementList = driver.findElements(cartBadge);
         return webElementList.size() == 0;
     }
 }

@@ -9,7 +9,7 @@ public class ProductsPage extends Page {
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
     private By cartLink = new By.ByCssSelector(".shopping_cart_link");
-
+    private By addBagToCartLink = new By.ById("add-to-cart-sauce-labs-backpacks");
     private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
     private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
 
@@ -34,10 +34,14 @@ public class ProductsPage extends Page {
         driver.findElement(linkedInLink).click();
     }
 
-    public void goToCart(){
+    public CartPage goToCart(){
         driver.findElement(cartLink).click();
+        return new CartPage(driver);
     }
 
+    public void addBagToCart(){
+        driver.findElement(addBagToCartLink).click();
+    }
     public void goToHamburgerMenu() {
         driver.findElement(hamburgerMenu).click();
     }

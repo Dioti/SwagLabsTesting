@@ -12,6 +12,10 @@ public class Page {
 
     public WebDriver driver;
 
+    public Page(WebDriver driver) {
+        this.driver = driver;
+    }
+
     public String getUrl() {
         return driver.getCurrentUrl();
     }

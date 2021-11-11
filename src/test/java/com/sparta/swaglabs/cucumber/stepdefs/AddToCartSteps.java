@@ -9,11 +9,11 @@ import org.openqa.selenium.WebDriver;
 
 public class AddToCartSteps {
     private WebDriver webDriver;
-
+/*
     @Before
     public void setUp() {
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
-    }
+    }*/
 
     @Given("I am on the products page")
     public void iAmOnTheProductsPage() {

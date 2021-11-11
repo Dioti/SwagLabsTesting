@@ -6,6 +6,7 @@ import com.sparta.swaglabs.pom.util.DriverFactory;
 import com.sparta.swaglabs.pom.util.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
@@ -15,25 +16,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FooterSteps {
-    private WebDriver webDriver;
     private ProductsPage productsPage;
 
-    @Before
-    public void setUp() {
-        DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
-        webDriver = DriverFactory.getDriver("chrome");
-        productsPage = new ProductsPage(webDriver);
+    private StepDefManager stepDefStateManager;
+
+    // PicoContainer injects class StepDefStateManager
+    public FooterSteps (StepDefManager stepDefStateManager) {
+        this.stepDefStateManager = stepDefStateManager;
+    }
+
+    @Given("The user is logged in")
+    public void theUserIsLoggedIn() {
+        LoginPage loginPage = new LoginPage(stepDefStateManager.getWebDriver());
+        loginPage.login("standard_user", "secret_sauce");
+
+        productsPage = new ProductsPage(stepDefStateManager.getWebDriver());
     }
 
     @When("I click on the Twitter icon")
     public void iClickOnTheTwitterIcon() {
-        LoginPage loginPage = new LoginPage(webDriver);
-        try {
-            Thread.sleep(10_000);
-            productsPage.goToTwitter();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        LoginPage loginPage = new LoginPage(stepDefStateManager.getWebDriver());
+        productsPage.goToTwitter();
     }
 
     @Then("I should be redirected to the company's Twitter profile")
@@ -59,10 +62,5 @@ public class FooterSteps {
 
     @Then("I should be redirected to the company's Linkedin profile")
     public void iShouldBeRedirectedToTheCompanySLinkedinProfile() {
-    }
-
-    @After
-    public void finish() {
-        webDriver.quit();
     }
 }

@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 public class CheckoutCartSteps {
-    private WebDriver webDriver;
+    /*private WebDriver webDriver;
 
     @Before
     public void setUp() {
@@ -45,5 +45,5 @@ public class CheckoutCartSteps {
 
     @Then("Display a thank you message")
     public void displayAThankYouMessage() {
-    }
+    }*/
 }

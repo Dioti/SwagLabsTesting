@@ -24,7 +24,7 @@ public class LoginSteps {
     private static FirefoxOptions options;
     private static LoginPage loginPage;
 
-    @Before
+    /*@Before
     public void setup() {
         // TODO: use factory instead
         DriverManager.setDriverLocation("firefox", DRIVER_LOC);
@@ -87,5 +87,5 @@ public class LoginSteps {
     @After
     public void teardown() {
         driver.quit();
-    }
+    }*/
 }

@@ -38,22 +38,27 @@ public class HamburgerMenuSteps {
 
     @And("I click the About link")
     public void iClickTheAboutLink() {
+        productsPage.goToAboutFromHamburgerMenu();
     }
 
     @Then("I am redirected to saucelabs.com")
     public void iAmRedirectedToSaucelabsCom() {
+        Assertions.assertEquals("https://saucelabs.com/", productsPage.getUrl());
     }
 
     @And("I click on the log out link")
     public void iClickOnTheLogOutLink() {
+        productsPage.goToLogOutFromHamburgerMenu();
     }
 
     @Then("I am logged out and redirected to the log in page")
     public void iAmLoggedOutAndRedirectedToTheLogInPage() {
+        Assertions.assertEquals("https://www.saucedemo.com/", productsPage.getUrl());
     }
 
     @And("I click on Reset App State link")
     public void iClickOnResetAppStateLink() {
+
     }
 
     @Then("All items in the cart are removed")

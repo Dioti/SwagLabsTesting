@@ -4,17 +4,26 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductsPage extends Page {
+    //Footer Links
     private By twitterLink = new By.ByCssSelector(".social_twitter");
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
+
+    //Hamburger Menu
+    private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
+
+    //Cart Link
     private By cartLink = new By.ByCssSelector(".shopping_cart_link");
 
-    private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
+    //Hamburger Menu Links
     private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
-
-    private By hamburgerMenuWrap = new By.ByClassName("bm-menu-wrap");
+    private By aboutInHamburgerMenu = new By.ByCssSelector("#about_sidebar_link"); // - > https://saucelabs.com/
+    private By resetAppStateInHamburgerMenu = new By.ByCssSelector("#reset_sidebar_link");
+    private By logOutInHamburgerMenu = new By.ByCssSelector("#logout_sidebar_link");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -37,7 +46,7 @@ public class ProductsPage extends Page {
         driver.findElement(linkedInLink).click();
     }
 
-    public void goToCart(){
+    public void goToCart() {
         driver.findElement(cartLink).click();
     }
 
@@ -46,26 +55,28 @@ public class ProductsPage extends Page {
     }
 
     public void goToAllItemsFromHamburgerMenu() {
-        boolean bool = false;
-        while(!bool) {
-            bool = isAttributePresent();
-            if(bool) {
-                driver.findElement(allItemsLinkInHamburgerMenu).click();
-            }
-        }
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(allItemsLinkInHamburgerMenu));
+        element.click();
     }
 
-    private boolean isAttributePresent() {
-        boolean result = false;
-        try {
-            String value = driver.findElement(hamburgerMenuWrap).getAttribute("aria-hidden");
-            if (value != null){
-                result = true;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
+    public void goToAboutFromHamburgerMenu() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(aboutInHamburgerMenu));
+        element.click();
     }
+
+    public void goToLogOutFromHamburgerMenu() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(logOutInHamburgerMenu));
+        element.click();
+    }
+
+    public void goToResetAppStateFromHamburgerMenu() {
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(logOutInHamburgerMenu));
+        element.click();
+    }
+
 
 }

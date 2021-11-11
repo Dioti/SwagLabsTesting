@@ -3,6 +3,7 @@ package com.sparta.swaglabs.pom.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 public class ProductsPage extends Page {
     private By twitterLink = new By.ByCssSelector(".social_twitter");
@@ -12,6 +13,8 @@ public class ProductsPage extends Page {
 
     private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
     private By allItemsLinkInHamburgerMenu = new By.ByCssSelector("#inventory_sidebar_link");
+
+    private By hamburgerMenuWrap = new By.ByClassName("bm-menu-wrap");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -43,7 +46,22 @@ public class ProductsPage extends Page {
     }
 
     public void goToAllItemsFromHamburgerMenu() {
-        driver.findElement(allItemsLinkInHamburgerMenu).click();
+        if (isAttributePresent()) {
+            driver.findElement(allItemsLinkInHamburgerMenu).click();
+        }
+    }
+
+    private boolean isAttributePresent() {
+        boolean result = false;
+        try {
+            String value = driver.findElement(hamburgerMenuWrap).getAttribute("aria-hidden");
+            if (value != null){
+                result = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 
 }

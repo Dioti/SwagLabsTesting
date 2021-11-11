@@ -17,15 +17,17 @@ public class ViewCartSteps {
     private ProductsPage productsPage;
     //private CartPage cartPage;
     private LoginPage loginPage;
+    private StepDefManager manager;
+    public ViewCartSteps(StepDefManager manager) {
+        this.manager = manager;
+    }
 
-    /*@Before
-    public void setUp() {
-        DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
-        webDriver=new ChromeDriver();
-        loginPage= new LoginPage(webDriver);
+    @Given("I'm on the products page")
+    public void imOnTheProductsPage() {
+        loginPage = new LoginPage(manager.getWebDriver());
         loginPage.login("standard_user","secret_sauce");
-        productsPage=loginPage.getRedirect();
-    }*/
+        productsPage= loginPage.getRedirect();
+    }
 
     @When("I click on the cart icon")
     public void iClickOnTheCartIcon() {
@@ -35,7 +37,7 @@ public class ViewCartSteps {
 
     @Then("I want to see the products in my shopping cart")
     public void iWantToSeeTheCorrectProductsInMyShoppingCart() {
-        String actualUrl=webDriver.getCurrentUrl();
+        String actualUrl=manager.getPageURL();
         Assertions.assertEquals("https://www.saucedemo.com/cart.html",actualUrl);
     }
 
@@ -46,6 +48,7 @@ public class ViewCartSteps {
 
     @Then("I want to see the details of the products in my shopping cart")
     public void iWantToSeeTheDetailsOfTheProductsInMyShoppingCart() {
-        
+
     }
+
 }

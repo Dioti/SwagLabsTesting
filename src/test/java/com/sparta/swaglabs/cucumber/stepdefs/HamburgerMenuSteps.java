@@ -58,10 +58,13 @@ public class HamburgerMenuSteps {
 
     @And("I click on Reset App State link")
     public void iClickOnResetAppStateLink() {
-
+        productsPage.addTShirt(); //now there is 1 in the card
+        productsPage.goToResetAppStateFromHamburgerMenu();
     }
 
     @Then("All items in the cart are removed")
     public void allItemsInTheCartAreRemoved() {
+        Assertions.assertEquals(false, productsPage.resetProducts());
+
     }
 }

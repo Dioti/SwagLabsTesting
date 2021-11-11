@@ -17,23 +17,24 @@ public class ProductsPage extends Page {
         super(webDriver);
     }
 
-    public Page goToTwitter() {
+    public void goToTwitter() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(twitterLink).click();
-        return new Page(driver);
+
     }
 
     public void goToFacebook() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(facebookLink).click();
+
     }
 
     public void goTolinkedIn() {
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
         driver.findElement(linkedInLink).click();
     }
+
     public void goToCart(){
-        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL,Keys.END);
         driver.findElement(cartLink).click();
     }
 

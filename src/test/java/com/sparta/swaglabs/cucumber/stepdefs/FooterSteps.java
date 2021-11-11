@@ -1,26 +1,48 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
+import com.sparta.swaglabs.pom.pages.LoginPage;
+import com.sparta.swaglabs.pom.pages.ProductsPage;
+import com.sparta.swaglabs.pom.util.DriverFactory;
 import com.sparta.swaglabs.pom.util.DriverManager;
-import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class FooterSteps {
     private WebDriver webDriver;
+    ProductsPage productsPage;
 
     @Before
     public void setUp() {
+        webDriver = DriverFactory.getDriver("chrome");
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
+        productsPage = new ProductsPage(webDriver);
     }
 
     @When("I click on the Twitter icon")
     public void iClickOnTheTwitterIcon() {
+        LoginPage loginPage = new LoginPage(webDriver);
+        try {
+            Thread.sleep(10_000);
+            productsPage.goToTwitter();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        productsPage.goToTwitter();
     }
 
     @Then("I should be redirected to the company's Twitter profile")
     public void iShouldBeRedirectedToTheCompanySTwitterProfile() {
+        List<String> urls = new ArrayList<>();
+        for (String s : productsPage.getURls()) {
+            urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
+        }
+        Assertions.assertEquals(true, urls.contains("https://twitter.com/saucelabs"));
     }
 
     @When("I click on the Facebook icon")

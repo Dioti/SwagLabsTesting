@@ -8,7 +8,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
-public class HamburgerMenuDefs {
+public class HamburgerMenuSteps {
     private WebDriver webDriver;
 
     @Before
@@ -50,11 +50,6 @@ public class HamburgerMenuDefs {
 
     @Then("All items in the cart are removed")
     public void allItemsInTheCartAreRemoved() {
-    }
-
-    @After
-    public void finished() {
-        webDriver.quit();
     }
 
 }

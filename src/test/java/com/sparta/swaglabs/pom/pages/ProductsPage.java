@@ -219,4 +219,14 @@ public class ProductsPage extends Page {
     public String getCurrentFilter() {
         return driver.findElement(By.className("active_option")).getText();
     }
+    public String getBackpackDescription(){
+        Product bag=null;
+        ArrayList<Product> allItems=getProducts();
+        for (Product p: allItems) {
+            if (p.getName().contains("Backpack")) {
+                bag= p;
+            }
+        }
+        return bag.getDesc();
+    }
 }

@@ -1,6 +1,6 @@
 package com.sparta.swaglabs.pom.model;
 
-public class Product {
+public class Product  {
 
     private int id;
     private String name;

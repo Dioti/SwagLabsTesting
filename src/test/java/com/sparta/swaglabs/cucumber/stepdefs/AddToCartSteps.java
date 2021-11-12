@@ -1,5 +1,6 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
+import com.sparta.swaglabs.pom.model.Product;
 import com.sparta.swaglabs.pom.pages.CartPage;
 import com.sparta.swaglabs.pom.pages.LoginPage;
 import com.sparta.swaglabs.pom.pages.ProductsPage;
@@ -10,6 +11,9 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddToCartSteps {
     private WebDriver webDriver;
     private String description;
@@ -18,6 +22,7 @@ public class AddToCartSteps {
     private StepDefManager manager;
     private CartPage cartPage;
     private By bagInfo = new By.ByClassName("inventory_item_desc");
+    private List<String> itemDescInCart;
     public AddToCartSteps(StepDefManager manager) {
         this.manager = manager;
     }
@@ -31,13 +36,13 @@ public class AddToCartSteps {
     @When("I click the \"Add To Cart\" button next to an item")
     public void iClickTheButtonNextToAnItem() {
         productsPage.addBagToCart();
-        description=productsPage.driver.findElement(bagInfo).getText();
+        description= productsPage.getBackpackDescription();
     }
 
     @Then("the item is added to cart")
     public void theItemIsAddedToCart() {
         cartPage=productsPage.goToCart();
-        Assertions.assertEquals(1,1);
-
+        itemDescInCart=cartPage.getDescOfItemsInCart();
+        Assertions.assertTrue(itemDescInCart.contains(description));
     }
 }

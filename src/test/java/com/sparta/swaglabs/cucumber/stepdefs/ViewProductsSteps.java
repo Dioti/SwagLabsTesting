@@ -7,6 +7,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class ViewProductsSteps {
 
     private StepDefManager manager;
     private ProductsPage productsPage;
+    private int randomProductID;
 
     public ViewProductsSteps(StepDefManager manager) {
         this.manager = manager;
@@ -27,8 +29,30 @@ public class ViewProductsSteps {
         productsPage = new ProductsPage(manager.getWebDriver());
     }
 
+    @And("there is at least one product on the Products page")
+    public void thereIsAtLeastOneProductOnTheProductsPage() {
+        // TODO: how do you handle conditional statements like this in cucumber?
+        //productsPage.isEmpty();
+    }
+
+    @When("I click on the product image")
+    public void iClickOnTheProductImage() {
+        randomProductID = productsPage.clickRandomProductImage();
+    }
+
+    @When("I click on the product name")
+    public void iClickOnTheProductName() {
+        randomProductID = productsPage.clickRandomProductName();
+    }
+
     @Then("I see a list of products on the Products page")
     public void iSeeAListOfProductsOnTheProductsPage() {
         assertEquals(6, productsPage.getProducts().size());
+    }
+
+    @Then("I go to the product page")
+    public void iGoToTheProductPage() {
+        String expected = manager.getBaseURL() + "/inventory-item.html?id=" + randomProductID;
+        assertEquals(expected, manager.getPageURL());
     }
 }

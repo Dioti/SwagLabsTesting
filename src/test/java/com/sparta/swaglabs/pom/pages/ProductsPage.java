@@ -79,7 +79,9 @@ public class ProductsPage extends Page {
     }
 
     public void goToAllItemsFromHamburgerMenu() {
-        driver.findElement(allItemsLinkInHamburgerMenu).click();
+        WebDriverWait webDriverWait = new WebDriverWait(driver, 20);
+        WebElement element = webDriverWait.until(ExpectedConditions.elementToBeClickable(allItemsLinkInHamburgerMenu));
+        element.click();
     }
 
     public void goToAboutFromHamburgerMenu() {

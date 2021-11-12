@@ -71,5 +71,4 @@ public class LoginSteps {
         String expectedError = "Password is required";
         assertTrue(loginPage.getError().contains(expectedError)); // use assertTrue from junit4 only, not jupiter
     }
-
 }

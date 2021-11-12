@@ -43,7 +43,6 @@ public class StepDefManager {
         loginPage.fillWithUsername("standard_user");
         loginPage.fillWithPassword("secret_sauce");
         loginPage.submit();
-        ProductsPage productsPage = loginPage.getRedirect();
     }
 
     @After

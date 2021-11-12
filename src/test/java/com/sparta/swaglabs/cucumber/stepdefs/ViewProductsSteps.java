@@ -29,7 +29,7 @@ public class ViewProductsSteps {
         productsPage = new ProductsPage(manager.getWebDriver());
     }
 
-    @And("there is at least one product on the Products page")
+    @Given("There is at least one product on the Products page")
     public void thereIsAtLeastOneProductOnTheProductsPage() {
         // TODO: how do you handle conditional statements like this in cucumber?
         //productsPage.isEmpty();

@@ -11,8 +11,11 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class ViewProductsSteps {
 
@@ -54,5 +57,10 @@ public class ViewProductsSteps {
     public void iGoToTheProductPage() {
         String expected = manager.getBaseURL() + "/inventory-item.html?id=" + randomProductID;
         assertEquals(expected, manager.getPageURL());
+    }
+
+    @Then("I see a unique image for each product")
+    public void iSeeAUniqueImageForEachProduct() {
+        assertTrue(productsPage.imagesAreUnique());
     }
 }

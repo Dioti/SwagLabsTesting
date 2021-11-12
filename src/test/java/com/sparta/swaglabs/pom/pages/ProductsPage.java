@@ -10,7 +10,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -228,5 +230,16 @@ public class ProductsPage extends Page {
             }
         }
         return bag.getDesc();
+    }
+
+    public boolean imagesAreUnique() {
+        ArrayList<String> imageURLs = new ArrayList<>();
+        getProducts().stream().forEach(p -> imageURLs.add(p.getImageUrl()));
+        Set<String> set = new HashSet<String>(imageURLs);
+        if(set.size() < imageURLs.size()){
+            return false; // there are duplicates
+        } else {
+            return true;
+        }
     }
 }

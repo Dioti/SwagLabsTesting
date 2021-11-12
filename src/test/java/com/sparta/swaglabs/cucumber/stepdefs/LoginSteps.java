@@ -19,9 +19,19 @@ public class LoginSteps {
         this.manager = manager;
     }
 
-    @Given("The user account is locked out")
-    public void theUserAccountIsLockedOut() {
-        manager.loginWithCredentials("locked_out_user", "secret_sauce");
+    @Given("The user account is locked")
+    public void theUserAccountIsLocked() {
+        loginPage.fillWithUsername("locked_out_user");
+    }
+
+    @Given("The user account is problematic")
+    public void theUserAccountIsProblematic() {
+        loginPage.fillWithUsername("problem_user");
+    }
+
+    @Given("The user account is glitched")
+    public void theUserAccountIsGlitched() {
+        loginPage.fillWithUsername("performance_glitch_user");
     }
 
     @Given("I am on the Login page")

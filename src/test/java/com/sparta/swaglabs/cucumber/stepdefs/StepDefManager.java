@@ -38,7 +38,7 @@ public class StepDefManager {
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
         webDriver = DriverFactory.getDriver("chrome");
         webDriver.get(getBaseURL());
-        loginWithCredentials("standard_user", "secret_sauce"); // default
+        //loginWithCredentials("standard_user", "secret_sauce"); // default
     }
 
     public void loginWithCredentials(String user, String pass) {

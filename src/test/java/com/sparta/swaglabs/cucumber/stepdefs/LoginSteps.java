@@ -19,6 +19,11 @@ public class LoginSteps {
         this.manager = manager;
     }
 
+    @Given("The user account is locked out")
+    public void theUserAccountIsLockedOut() {
+        manager.loginWithCredentials("locked_out_user", "secret_sauce");
+    }
+
     @Given("I am on the Login page")
     public void iAmOnTheLoginPage() {
         loginPage = new LoginPage(manager.getWebDriver());
@@ -69,6 +74,12 @@ public class LoginSteps {
     @Then("I should see a \"password is required\" error message")
     public void iShouldSeeAPasswordIsRequiredErrorMessage() {
         String expectedError = "Password is required";
+        assertTrue(loginPage.getError().contains(expectedError)); // use assertTrue from junit4 only, not jupiter
+    }
+
+    @Then("I should see an error message about the account being locked")
+    public void iShouldSeeAnErrorMessageAboutTheAccountBeingLocked() {
+        String expectedError = "Sorry, this user has been locked out";
         assertTrue(loginPage.getError().contains(expectedError)); // use assertTrue from junit4 only, not jupiter
     }
 }

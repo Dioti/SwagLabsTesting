@@ -7,6 +7,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="SwagLabsTesting" />
+        <module name="Swaglabs project" />
       </profile>
     </annotationProcessing>
   </component>

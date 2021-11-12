@@ -34,15 +34,16 @@ public class StepDefManager {
     }
 
     @Before
-    public void setUp() throws Exception {
+    public void setup() throws Exception {
         DriverManager.setDriverLocation("chrome", "src/test/resources/chromedriver.exe");
         webDriver = DriverFactory.getDriver("chrome");
         webDriver.get(getBaseURL());
+        loginWithCredentials("standard_user", "secret_sauce"); // default
+    }
 
+    public void loginWithCredentials(String user, String pass) {
         LoginPage loginPage = new LoginPage(webDriver);
-        loginPage.fillWithUsername("standard_user");
-        loginPage.fillWithPassword("secret_sauce");
-        loginPage.submit();
+        loginPage.login(user, pass);
     }
 
     @After

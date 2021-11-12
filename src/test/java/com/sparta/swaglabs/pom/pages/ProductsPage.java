@@ -35,7 +35,8 @@ public class ProductsPage extends Page {
 
     //Products
     private By addTShirtToCart = new By.ByCssSelector("*[data-test=\"add-to-cart-sauce-labs-bolt-t-shirt\"]");
-    private By addBagToCartLink = new By.ById("add-to-cart-sauce-labs-backpacks");
+    private By addBagToCartLink = new By.ByCssSelector("*[data-test=\"add-to-cart-sauce-labs-backpack\"]");
+    private By removeBagFromCartLink = new By.ByCssSelector("*[data-test=\"remove-sauce-labs-backpack\"]");
 
     public ProductsPage(WebDriver webDriver) {
         super(webDriver);
@@ -184,5 +185,14 @@ public class ProductsPage extends Page {
         //System.out.println("Clicked product in position " + (randInt + 1) + " (id=" + id + ")");
 
         return id;
+    }
+
+    public int numberOfItemsInCart(){
+        List<WebElement> webElementList = driver.findElements(cartBadge);
+        return webElementList.size();
+    }
+
+    public void removeBackpackFromCartWhenOnProductsPage(){
+        driver.findElement(removeBagFromCartLink).click();
     }
 }

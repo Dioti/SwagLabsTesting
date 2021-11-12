@@ -6,6 +6,7 @@ import com.sparta.swaglabs.pom.pages.ProductsPage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -36,7 +37,7 @@ public class AddToCartSteps {
     @Then("the item is added to cart")
     public void theItemIsAddedToCart() {
         cartPage=productsPage.goToCart();
-
+        Assertions.assertEquals(1,1);
 
     }
 }

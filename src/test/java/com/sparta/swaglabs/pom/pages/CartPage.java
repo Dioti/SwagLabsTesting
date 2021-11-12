@@ -32,4 +32,14 @@ public class CartPage extends Page{
         }
         return desc;
     }
+
+    public CheckoutInformationPage checkout() {
+        driver.findElement(By.id("checkout")).click();
+        return new CheckoutInformationPage(driver);
+    }
+
+    public ProductsPage continueShopping() {
+        driver.findElement(By.id("continue-shopping")).click();
+        return new ProductsPage(driver);
+    }
 }

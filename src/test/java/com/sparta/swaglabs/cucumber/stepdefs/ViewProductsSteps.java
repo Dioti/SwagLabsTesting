@@ -1,31 +1,58 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
+import com.sparta.swaglabs.pom.model.Product;
+import com.sparta.swaglabs.pom.pages.ProductsPage;
 import com.sparta.swaglabs.pom.util.DriverManager;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
+
+import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class ViewProductsSteps {
 
-    @Then("I should see Product Title")
-    public void iShouldSeeProductTitle() {
+    private StepDefManager manager;
+    private ProductsPage productsPage;
+    private int randomProductID;
+
+    public ViewProductsSteps(StepDefManager manager) {
+        this.manager = manager;
     }
 
-    @And("I should see Product Description")
-    public void iShouldSeeProductDescription() {
+    @Given("I am on the Products page")
+    public void iAmOnTheProductsPage() {
+        productsPage = new ProductsPage(manager.getWebDriver());
     }
 
-    @And("I should see Product Price")
-    public void iShouldSeeProductPrice() {
+    @And("there is at least one product on the Products page")
+    public void thereIsAtLeastOneProductOnTheProductsPage() {
+        // TODO: how do you handle conditional statements like this in cucumber?
+        //productsPage.isEmpty();
     }
 
-    @Given("I am on the Cart page")
-    public void iAmOnTheCartPage() {
+    @When("I click on the product image")
+    public void iClickOnTheProductImage() {
+        randomProductID = productsPage.clickRandomProductImage();
     }
 
-    @And("I should see Product Quantity")
-    public void iShouldSeeProductQuantity() {
+    @When("I click on the product name")
+    public void iClickOnTheProductName() {
+        randomProductID = productsPage.clickRandomProductName();
+    }
+
+    @Then("I see a list of products on the Products page")
+    public void iSeeAListOfProductsOnTheProductsPage() {
+        assertEquals(6, productsPage.getProducts().size());
+    }
+
+    @Then("I go to the product page")
+    public void iGoToTheProductPage() {
+        String expected = manager.getBaseURL() + "/inventory-item.html?id=" + randomProductID;
+        assertEquals(expected, manager.getPageURL());
     }
 }

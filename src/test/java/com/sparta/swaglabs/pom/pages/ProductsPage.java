@@ -1,6 +1,7 @@
 package com.sparta.swaglabs.pom.pages;
 
 import com.sparta.swaglabs.pom.model.Product;
+import com.sparta.swaglabs.pom.util.RandomIntGenerator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -135,5 +136,53 @@ public class ProductsPage extends Page {
             products.add(new Product(id, name, desc, price, imageUrl));
         }
         return products;
+    }
+
+    public boolean isEmpty() {
+        if(getProducts().size() <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int clickRandomProductImage() {
+        List<WebElement> elements = driver.findElements(By.className("inventory_item"));
+        int randInt = RandomIntGenerator.generate(0, elements.size());
+        WebElement randProduct = elements.get(RandomIntGenerator.generate(0, elements.size()));
+
+        // extract product id from the link's "id" attribute
+        String idStr = randProduct.findElement(By.tagName("a")).getAttribute("id");
+        Pattern p = Pattern.compile("\\d+"); // match numbers
+        Matcher m = p.matcher(idStr);
+        int id = -1;
+        if (m.find()) {
+            id = Integer.parseInt(m.group(0));
+        }
+
+        randProduct.findElement(By.className("inventory_item_img")).click();
+        //System.out.println("Clicked product in position " + (randInt + 1) + " (id=" + id + ")");
+
+        return id;
+    }
+
+    public int clickRandomProductName() {
+        List<WebElement> elements = driver.findElements(By.className("inventory_item"));
+        int randInt = RandomIntGenerator.generate(0, elements.size());
+        WebElement randProduct = elements.get(randInt);
+
+        // extract product id from the link's "id" attribute
+        String idStr = randProduct.findElement(By.tagName("a")).getAttribute("id");
+        Pattern p = Pattern.compile("\\d+"); // match numbers
+        Matcher m = p.matcher(idStr);
+        int id = -1;
+        if (m.find()) {
+            id = Integer.parseInt(m.group(0));
+        }
+
+        randProduct.findElement(By.className("inventory_item_name")).click();
+        //System.out.println("Clicked product in position " + (randInt + 1) + " (id=" + id + ")");
+
+        return id;
     }
 }

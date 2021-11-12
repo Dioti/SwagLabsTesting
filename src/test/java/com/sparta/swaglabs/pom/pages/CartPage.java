@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CartPage extends Page{
@@ -20,5 +21,13 @@ public class CartPage extends Page{
     public int numberOfItemsInCart(){
         List<WebElement> webElementList = driver.findElements(cartBadge);
         return webElementList.size();
+    }
+    public List<String> getDescOfItemsInCart(){
+        List<WebElement> elements = driver.findElements(By.className("cart_item"));
+        List<String> desc=new ArrayList<String>();
+        for (WebElement webElement :elements) {
+            desc.add(webElement.findElement(By.className("inventory_item_desc")).getText());
+        }
+        return desc;
     }
 }

@@ -195,4 +195,28 @@ public class ProductsPage extends Page {
     public void removeBackpackFromCartWhenOnProductsPage(){
         driver.findElement(removeBagFromCartLink).click();
     }
+
+    public void clickFilterDropdown() {
+        driver.findElement(By.className("select_container")).click();
+    }
+
+    public void selectNameAZ() {
+        driver.findElement(By.cssSelector("option[value='az']")).click();
+    }
+
+    public void selectNameZA() {
+        driver.findElement(By.cssSelector("option[value='za']")).click();
+    }
+
+    public void selectPriceLowToHigh() {
+        driver.findElement(By.cssSelector("option[value='lohi']")).click();
+    }
+
+    public void selectPriceHighToLow() {
+        driver.findElement(By.cssSelector("option[value='hilo']")).click();
+    }
+
+    public String getCurrentFilter() {
+        return driver.findElement(By.className("active_option")).getText();
+    }
 }

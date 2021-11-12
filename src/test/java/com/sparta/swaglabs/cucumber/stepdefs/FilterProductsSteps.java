@@ -1,63 +1,111 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
+import com.sparta.swaglabs.pom.model.Product;
+import com.sparta.swaglabs.pom.pages.LoginPage;
+import com.sparta.swaglabs.pom.pages.ProductsPage;
 import com.sparta.swaglabs.pom.util.DriverManager;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+import static java.util.Collections.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 public class FilterProductsSteps {
+
+    private StepDefManager manager;
+    private ProductsPage productsPage;
+
+    public FilterProductsSteps(StepDefManager manager) {
+        this.manager = manager;
+        productsPage = new ProductsPage(manager.getWebDriver());
+    }
 
     @When("I click on the filter dropdown")
     public void iClickOnTheFilterDropdown() {
+        productsPage.clickFilterDropdown();
     }
 
-    @And("I click on the Name \\(A-Z) dropdown option")
-    public void iClickOnTheNameAZDropdownOption() {
+    @When("I click on the \"Name \\(A to Z)\" dropdown option")
+    public void iClickOnTheNameAToZDropdownOption() {
+        productsPage.selectNameAZ();
     }
 
-    @Then("The filter option should display Name\\(A-Z)")
-    public void theFilterOptionShouldDisplayNameAZ() {
+    @When("I click on the \"Name \\(Z to A)\" dropdown option")
+    public void iClickOnTheNameZToADropdownOption() {
+        productsPage.selectNameZA();
     }
 
-    @And("The products should be displayed alphabetically, in ascending order")
-    public void theProductsShouldBeDisplayedAlphabeticallyInAscendingOrder() {
-    }
-
-    @And("I click on the Name \\(Z-A) dropdown option")
-    public void iClickOnTheNameZADropdownOption() {
-    }
-
-    @Then("The filter option should display Name\\(Z-A)")
-    public void theFilterOptionShouldDisplayNameZA() {
-    }
-
-    @And("The products should be displayed alphabetically, in descending order")
-    public void theProductsShouldBeDisplayedAlphabeticallyInDescendingOrder() {
-    }
-
-    @And("I click on Price \\(low to high) dropdown option")
+    @When("I click on \"Price \\(low to high)\" dropdown option")
     public void iClickOnPriceLowToHighDropdownOption() {
+        productsPage.selectPriceLowToHigh();
     }
 
-    @Then("The filter option should display Price \\(low to high)")
-    public void theFilterOptionShouldDisplayPriceLowToHigh() {
-    }
-
-    @And("The products should be displayed by price, in ascending order")
-    public void theProductsShouldBeDisplayedByPriceInAscendingOrder() {
-    }
-
-    @And("I click on Price \\(high to low) dropdown option")
+    @When("I click on \"Price \\(high to low)\" dropdown option")
     public void iClickOnPriceHighToLowDropdownOption() {
+        productsPage.selectPriceHighToLow();
     }
 
-    @Then("The filter option should display Price \\(high to low)")
-    public void theFilterOptionShouldDisplayPriceHighToLow() {
+    @Then("The filter option should display \"NAME \\(A TO Z)\"")
+    public void theFilterOptionShouldDisplayNAMEATOZ() {
+        assertEquals("NAME (A TO Z)", productsPage.getCurrentFilter());
     }
 
-    @And("The products should be displayed by price, in descending order")
+    @Then("The filter option should display \"NAME \\(Z TO A)\"")
+    public void theFilterOptionShouldDisplayNAMEZTOA() {
+        assertEquals("NAME (Z TO A)", productsPage.getCurrentFilter());
+    }
+
+    @Then("The filter option should display \"PRICE \\(LOW TO HIGH)\"")
+    public void theFilterOptionShouldDisplayPRICELOWTOHIGH() {
+        assertEquals("PRICE (LOW TO HIGH)", productsPage.getCurrentFilter());
+    }
+
+    @Then("The filter option should display \"PRICE \\(HIGH TO LOW)\"")
+    public void theFilterOptionShouldDisplayPRICEHIGHTOLOW() {
+        assertEquals("PRICE (HIGH TO LOW)", productsPage.getCurrentFilter());
+    }
+
+    @Then("The products should be displayed alphabetically, in ascending order")
+    public void theProductsShouldBeDisplayedAlphabeticallyInAscendingOrder() {
+        ArrayList<String> productNames = new ArrayList<>();
+        productsPage.getProducts().stream().forEach(p -> productNames.add(p.getName()));
+        ArrayList<String> expected = productNames; // copy names array
+        sort(expected); // sort it in ascending order
+        assertEquals(expected, productNames);
+    }
+
+    @Then("The products should be displayed alphabetically, in descending order")
+    public void theProductsShouldBeDisplayedAlphabeticallyInDescendingOrder() {
+        ArrayList<String> productNames = new ArrayList<>();
+        productsPage.getProducts().stream().forEach(p -> productNames.add(p.getName()));
+        ArrayList<String> expected = productNames; // copy names array
+        sort(expected, reverseOrder()); // sort it in descending order
+        assertEquals(expected, productNames);
+    }
+
+    @Then("The products should be displayed by price, in ascending order")
+    public void theProductsShouldBeDisplayedByPriceInAscendingOrder() {
+        ArrayList<Integer> productPrices = new ArrayList<>();
+        productsPage.getProducts().stream().forEach(p -> productPrices.add(p.getPrice()));
+        ArrayList<Integer> expected = productPrices; // copy prices array
+        sort(expected); // sort it in ascending order
+        assertEquals(expected, productPrices);
+    }
+
+    @Then("The products should be displayed by price, in descending order")
     public void theProductsShouldBeDisplayedByPriceInDescendingOrder() {
+        ArrayList<Integer> productPrices = new ArrayList<>();
+        productsPage.getProducts().stream().forEach(p -> productPrices.add(p.getPrice()));
+        ArrayList<Integer> expected = productPrices; // copy prices array
+        sort(expected, reverseOrder()); // sort it in descending order
+        assertEquals(expected, productPrices);
     }
 }

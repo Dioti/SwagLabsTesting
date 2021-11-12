@@ -2,6 +2,10 @@ package com.sparta.swaglabs.pom.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+
+import java.util.Collection;
+import java.util.List;
 
 public class CheckoutInformationPage extends Page {
 
@@ -14,9 +18,8 @@ public class CheckoutInformationPage extends Page {
         driver.get("https://www.saucedemo.com/checkout-step-one.html");
     }
 
-    public CheckoutOverviewPage cont() {
+    public void cont() {
         driver.findElement(By.id("continue")).click();
-        return new CheckoutOverviewPage(driver);
     }
 
     public CartPage cancel() {
@@ -36,11 +39,20 @@ public class CheckoutInformationPage extends Page {
         driver.findElement(By.id("postal-code")).sendKeys(postCode);
     }
 
-    public CheckoutOverviewPage submitDetails(String firstName, String lastName, String postCode) {
+    public void submitDetails(String firstName, String lastName, String postCode) {
         fillFirstName(firstName);
         fillLastName(lastName);
         fillPostCode(postCode);
-        return cont();
+        cont();
     }
 
+    public String getError() {
+        List<WebElement> errorContainer = driver.findElements(By.className("error-message-container"));
+        //errorContainer.stream().forEach(e -> System.out.println(e.getText()));
+        if (errorContainer.size() != 0) { // if there's an error
+            return driver.findElement(By.className("error-message-container")).getText(); // return error message
+        } else {
+            return null;
+        }
+    }
 }

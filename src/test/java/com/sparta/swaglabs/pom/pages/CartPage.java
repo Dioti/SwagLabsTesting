@@ -14,7 +14,13 @@ public class CartPage extends Page{
 
     public CartPage (WebDriver webDriver){
         super(webDriver);
+        goToCart();
     }
+
+    private void goToCart() {
+        driver.get("https://www.saucedemo.com/cart.html");
+    }
+
     public void removeBackpackFromCartWhenOnCartPage(){
         driver.findElement(removeBagFromCartLink).click();
     }

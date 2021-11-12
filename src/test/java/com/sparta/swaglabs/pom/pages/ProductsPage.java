@@ -244,4 +244,14 @@ public class ProductsPage extends Page {
             return true;
         }
     }
+    public List<String> getBackpackAndTshirtInfo(){
+        List<String> itemsNeeded=new ArrayList<String>();
+        ArrayList<Product> allItems=getProducts();
+        for (Product p: allItems) {
+            if (p.getName().contains("Backpack") || p.getName().contains("Bolt T-Shirt")) {
+                itemsNeeded.add(p.getDesc());
+            }
+        }
+        return itemsNeeded;
+    }
 }

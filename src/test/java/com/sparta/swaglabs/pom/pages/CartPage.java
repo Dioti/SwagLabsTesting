@@ -1,5 +1,6 @@
 package com.sparta.swaglabs.pom.pages;
 
+import com.sparta.swaglabs.pom.model.Product;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,6 +23,7 @@ public class CartPage extends Page{
         List<WebElement> webElementList = driver.findElements(cartBadge);
         return webElementList.size();
     }
+
     public List<String> getDescOfItemsInCart(){
         List<WebElement> elements = driver.findElements(By.className("cart_item"));
         List<String> desc=new ArrayList<String>();

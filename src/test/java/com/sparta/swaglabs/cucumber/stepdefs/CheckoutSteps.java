@@ -1,6 +1,7 @@
 package com.sparta.swaglabs.cucumber.stepdefs;
 
 import com.sparta.swaglabs.pom.pages.CartPage;
+import com.sparta.swaglabs.pom.pages.CheckoutCompletePage;
 import com.sparta.swaglabs.pom.pages.CheckoutInformationPage;
 import com.sparta.swaglabs.pom.pages.CheckoutOverviewPage;
 import io.cucumber.java.en.And;
@@ -16,6 +17,8 @@ public class CheckoutSteps {
     private StepDefManager manager;
     private CartPage cartPage;
     private CheckoutInformationPage checkoutInformationPage;
+    private CheckoutOverviewPage checkoutOverviewPage;
+    private CheckoutCompletePage checkoutCompletePage;
 
     public CheckoutSteps(StepDefManager manager) {
         this.manager = manager;
@@ -45,11 +48,6 @@ public class CheckoutSteps {
 
     @When("I click the Checkout button")
     public void iClickTheCheckoutButton() {
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         cartPage.checkout();
     }
 
@@ -94,5 +92,25 @@ public class CheckoutSteps {
     public void iSeeAPostalCodeIsRequiredErrorMessage() {
         String expectedError = "Postal Code is required";
         assertTrue(checkoutInformationPage.getError().contains(expectedError)); // use assertTrue from junit4 only, not jupiter
+    }
+
+    @Given("I am on the Checkout Overview page")
+    public void iAmOnTheCheckoutOverviewPage() {
+        checkoutOverviewPage = new CheckoutOverviewPage(manager.getWebDriver());
+    }
+
+    @When("I press the Finish button")
+    public void iPressTheFinishButton() {
+        checkoutOverviewPage.finish();
+    }
+
+    @When("I press the Cancel button")
+    public void iPressTheCancelButton() {
+        checkoutOverviewPage.cancel();
+    }
+
+    @Then("I go to the Checkout Complete page")
+    public void iGoToTheCheckoutCompletePage() {
+        assertEquals("https://www.saucedemo.com/checkout-complete.html", manager.getPageURL());
     }
 }

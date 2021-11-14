@@ -21,6 +21,7 @@ public class ProductsPage extends Page {
     private By twitterLink = new By.ByCssSelector(".social_twitter");
     private By facebookLink = new By.ByCssSelector(".social_facebook");
     private By linkedInLink = new By.ByCssSelector(".social_linkedin");
+    private By copyRightText = new By.ByClassName("footer_copy");
 
     //Hamburger Menu
     private By hamburgerMenu = new By.ByCssSelector("#react-burger-menu-btn");
@@ -253,5 +254,10 @@ public class ProductsPage extends Page {
             }
         }
         return itemsNeeded;
+    }
+
+    public String getCopyRightText() {
+        System.out.println(driver.findElement(copyRightText).getText());
+        return driver.findElement(copyRightText).getText();
     }
 }

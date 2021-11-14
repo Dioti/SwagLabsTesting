@@ -15,6 +15,10 @@ Feature: To have social media links
     When I click on the Linkedin icon
     Then I should be redirected to the company's Linkedin profile
 
+  Scenario: As an admin, I want the company's copyright text to be displayed in the footer
+    Then I should see the copyright text at the bottom of the page
+
+
 
 
 

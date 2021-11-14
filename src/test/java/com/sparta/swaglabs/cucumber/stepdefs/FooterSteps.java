@@ -6,6 +6,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 
 import java.util.ArrayList;
@@ -72,5 +74,10 @@ public class FooterSteps {
             urls.add(productsPage.driver.switchTo().window(s).getCurrentUrl());
         }
         Assertions.assertEquals(true, urls.get(1).contains("https://www.linkedin.com/"));
+    }
+
+    @Then("I should see the copyright text at the bottom of the page")
+    public void iShouldSeeTheCopyrightTextAtTheBottomOfThePage() {
+        Assertions.assertEquals("© 2021 Sauce Labs. All Rights Reserved. Terms of Service | Privacy Policy", productsPage.getCopyRightText());
     }
 }

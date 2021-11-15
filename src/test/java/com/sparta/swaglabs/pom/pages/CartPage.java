@@ -14,7 +14,13 @@ public class CartPage extends Page{
 
     public CartPage (WebDriver webDriver){
         super(webDriver);
+        goToCart();
     }
+
+    private void goToCart() {
+        driver.get("https://www.saucedemo.com/cart.html");
+    }
+
     public void removeBackpackFromCartWhenOnCartPage(){
         driver.findElement(removeBagFromCartLink).click();
     }
@@ -31,5 +37,15 @@ public class CartPage extends Page{
             desc.add(webElement.findElement(By.className("inventory_item_desc")).getText());
         }
         return desc;
+    }
+
+    public CheckoutInformationPage checkout() {
+        driver.findElement(By.id("checkout")).click();
+        return new CheckoutInformationPage(driver);
+    }
+
+    public ProductsPage continueShopping() {
+        driver.findElement(By.id("continue-shopping")).click();
+        return new ProductsPage(driver);
     }
 }

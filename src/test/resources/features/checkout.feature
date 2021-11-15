@@ -11,8 +11,6 @@ Feature: Checkout
     And I click the Continue button
     Then I go to the Checkout Overview page
 
-
-
   Scenario: First name is missing from shipping details
     Given I am on the Checkout Information page
     When I fill in last name
